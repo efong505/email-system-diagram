@@ -57,8 +57,8 @@ graph TB
     subgraph "Tracking Pipeline"
         H1[CloudFront<br/>E3N00R2D2NE9C5]
         H2[API Gateway<br/>niexv1rw75]
-        H3[/track/open/base64]
-        H4[/track/click/base64]
+        H3["track/open/base64"]
+        H4["track/click/base64"]
         H5[Return 1x1 Pixel]
         H6[302 Redirect to URL]
     end
@@ -129,17 +129,17 @@ graph TB
 
     %% Open Tracking
     G3 -->|Load pixel image| H1
-    H1 -->|Route /track/open/*| H2
+    H1 -->|"Route /track/open/*"| H2
     H2 -->|Invoke Lambda| B
-    B -->|Decode base64<br/>email:campaign_id| H3
+    B -->|"Decode base64<br/>email:campaign_id"| H3
     H3 -->|Log open event| D4
     H3 -->|Return pixel| H5
 
     %% Click Tracking
     G4 -->|Click tracked link| H1
-    H1 -->|Route /track/click/*| H2
+    H1 -->|"Route /track/click/*"| H2
     H2 -->|Invoke Lambda| B
-    B -->|Decode base64<br/>email:campaign_id:url| H4
+    B -->|"Decode base64<br/>email:campaign_id:url"| H4
     H4 -->|Log click event| D4
     H4 -->|Redirect to destination| H6
 
